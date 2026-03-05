@@ -1,7 +1,7 @@
+<img width="1376" height="768" alt="Gemini_Generated_Image_930wkq930wkq930w" src="https://github.com/user-attachments/assets/888c1df7-c8e7-45bf-8dd3-8584ca2af3be" />
 
 
 # 🦫☕ The Space Beaver Coffee 🚀
-<img width="1376" height="768" alt="Gemini_Generated_Image_930wkq930wkq930w" src="https://github.com/user-attachments/assets/607d22af-18c7-40f9-8150-d0056fad285c" />
 
 
 Welcome to **The Space Beaver Coffee**, an optional front-end challenge project where creativity meets web fundamentals — and where beavers apparently decided to conquer the galaxy with caffeine.
@@ -135,3 +135,4 @@ New ideas, design improvements, and additional content can be added over time as
 For now, this is a sandbox for experimentation, learning, and creative exploration.
 
 Let the code flow.
+
