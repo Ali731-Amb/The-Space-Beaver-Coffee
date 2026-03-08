@@ -8,6 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Le code secret pour activer l'IA de la serre
     const SECRET_KEY = "root"; 
+if (localStorage.getItem('clandestineMode') === 'enabled') {
+        applyClandestineStyle(true); // true pour dire "sans animation"
+    }
+
+    // --- ÉTAPE B : LA FONCTION DE TRANSFORMATION ---
+    function applyClandestineStyle(immediate = false) {
+        if (immediate) {
+            document.body.classList.add('clandestine-mode');
+            transformContent();
+        } else {
+            // Séquence avec animation (pour la première activation)
+            document.body.classList.add('activating-ia');
+            setTimeout(() => {
+                document.body.classList.remove('activating-ia');
+                document.body.classList.add('clandestine-mode');
+                transformContent();
+                localStorage.setItem('clandestineMode', 'enabled'); // ON SAUVEGARDE ICI
+            }, 1200);
+        }
+    }
 
     const toggleSecretGarden = () => {
     const value = searchInput.value.toLowerCase().trim();
