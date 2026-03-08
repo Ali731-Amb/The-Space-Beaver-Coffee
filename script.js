@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleSecretGarden = () => {
     const value = searchInput.value.toLowerCase().trim();
 
-    if (value === "overgrow") {
+    if (value === "root") {
         // 1. On lance l'effet visuel de transition (Flash/Glitch)
         document.body.classList.add('activating-ia');
         searchInput.value = "CHARGEMENT...";
