@@ -415,3 +415,25 @@ body {
     animation: ia-glitch 0.2s infinite; /* Clignote très vite pendant le chargement */
     cursor: wait; /* Le curseur devient un sablier */
 }
+
+/* --- ÉTAT PAR DÉFAUT --- */
+.info-secrete {
+    display: none; /* On cache le côté sombre par défaut */
+}
+
+/* --- ÉTAT CLANDESTIN --- */
+body.clandestine-mode .info-normale {
+    display: none; /* On cache le côté civil */
+}
+
+body.clandestine-mode .info-secrete {
+    display: block; /* On révèle l'identité secrète */
+    color: var(--couleur-texte);
+}
+
+/* Effet visuel sur les photos pour le côté "Dossier Interdit" */
+body.clandestine-mode .member-card img {
+    filter: grayscale(100%) brightness(0.7) sepia(100%) hue-rotate(100deg) saturate(3);
+    border-color: var(--couleur-accent);
+    box-shadow: 0 0 20px var(--couleur-accent);
+}
