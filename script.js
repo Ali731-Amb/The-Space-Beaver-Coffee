@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.querySelector('.search-box button');
 
     // Le code secret pour activer l'IA de la serre
-    const SECRET_KEY = "overgrow"; 
+    const SECRET_KEY = "root"; 
 
     const toggleSecretGarden = () => {
         const value = searchInput.value.toLowerCase().trim();
