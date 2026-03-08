@@ -360,8 +360,8 @@ button[type="submit"]:hover{
 /* Mode Clandestin : On écrase les variables de base */
 body.clandestine-mode {
     --couleur-bois: #050505;       /* Noir profond */
-    --couleur-texte: #39ff14;      /* Vert Néon "Radioactive" */
-    --couleur-accent: #ff00ff;     /* Magenta Néon pour les fleurs mutantes */
+    --couleur-texte: #ffb700;      /* Vert Néon "Radioactive" */
+    --couleur-accent: #ff4d00;     /* Magenta Néon pour les fleurs mutantes */
     transition: all 0.8s ease-in-out; /* Effet de transition fluide */
 }
 
