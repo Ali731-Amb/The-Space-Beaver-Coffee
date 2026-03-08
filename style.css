@@ -427,7 +427,7 @@ body.clandestine-mode .info-normale {
 }
 
 body.clandestine-mode .info-secrete {
-    display: block; /* On révèle l'identité secrète */
+    display: block !important; /* On révèle l'identité secrète */
     color: var(--couleur-texte);
 }
 

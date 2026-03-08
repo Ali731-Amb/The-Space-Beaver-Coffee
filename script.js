@@ -62,17 +62,7 @@ if (localStorage.getItem('clandestineMode') === 'enabled') {
      * Change les noms des boissons et de l'équipage pour le mode secret
      */
     const transformContent = () => {
-        // Change les noms des boissons (ex: Café -> Café à la Sève Mutante)
-        const drinkNames = document.querySelectorAll('.card h3');
-        drinkNames.forEach(name => {
-            name.textContent += " [BOOSTÉ IA]";
-        });
-
-        // Change les rôles de l'équipage
-        const roles = document.querySelectorAll('.role');
-        roles.forEach(role => {
-            role.textContent = "Cultivateur Bio-Hacker";
-        });
+        console.log("Transformation des données terminée.");
     };
 
     searchBtn.addEventListener('click', toggleSecretGarden);
