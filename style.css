@@ -154,6 +154,18 @@ h1 {
     padding: 50px;
 }
 
+.car img{
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid var(--couleur-texte);
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .card {
     background-color: white;
     padding: 20px;
@@ -162,6 +174,8 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+    align-items: center;
+    text-align: center;
     /* Ajoute un petit effet d'affiche ici ! */
 }
 
@@ -341,4 +355,25 @@ button[type="submit"]{
 button[type="submit"]:hover{
 	background-color: var(--couleur-accent);
 
+}
+
+/* Mode Clandestin : On écrase les variables de base */
+body.clandestine-mode {
+    --couleur-bois: #050505;       /* Noir profond */
+    --couleur-texte: #39ff14;      /* Vert Néon "Radioactive" */
+    --couleur-accent: #ff00ff;     /* Magenta Néon pour les fleurs mutantes */
+    transition: all 0.8s ease-in-out; /* Effet de transition fluide */
+}
+
+/* On change l'aspect des cartes en mode secret */
+body.clandestine-mode .card {
+    background-color: #111;
+    border-color: var(--couleur-texte);
+    box-shadow: 0 0 15px var(--couleur-texte);
+}
+
+/* Les photos de l'équipage deviennent "glitch" ou néon */
+body.clandestine-mode .member-card img {
+    filter: sepia(100%) hue-rotate(90deg) brightness(1.2);
+    border-color: var(--couleur-accent);
 }
