@@ -10,19 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const SECRET_KEY = "root"; 
 
     const toggleSecretGarden = () => {
-        const value = searchInput.value.toLowerCase().trim();
+    const value = searchInput.value.toLowerCase().trim();
 
-        if (value === SECRET_KEY) {
+    if (value === "overgrow") {
+        // 1. On lance l'effet visuel de transition (Flash/Glitch)
+        document.body.classList.add('activating-ia');
+        searchInput.value = "CHARGEMENT...";
+        searchInput.disabled = true; // On bloque l'input pendant l'anim
+
+        // 2. On attend 1.5 seconde (le temps que l'IA "réfléchisse")
+        setTimeout(() => {
+            // 3. On bascule enfin dans le mode Néon/Clandestin
+            document.body.classList.remove('activating-ia');
             document.body.classList.add('clandestine-mode');
-            transformContent(); // On lance la mutation du texte
-            console.log("IA System : Protocol Overgrow activated. 🌱");
-        } else {
-            console.warn("Accès refusé. Code incorrect.");
-            // Petit effet de vibration si le code est faux
-            searchInput.style.border = "2px solid red";
-            setTimeout(() => searchInput.style.border = "", 500);
-        }
-    };
+            
+            // On lance la mutation des textes que tu as déjà codée
+            transformContent(); 
+            
+            searchInput.value = "ACCÈS ACCORDÉ";
+            console.log("Protocole Botanique-Geek synchronisé. 🌿");
+        }, 1500); 
+
+    } else {
+        // Petit effet d'erreur si le code est faux
+        searchInput.style.borderColor = "red";
+        setTimeout(() => searchInput.style.borderColor = "", 500);
+    }
+};
 
     /**
      * Change les noms des boissons et de l'équipage pour le mode secret

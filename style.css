@@ -383,3 +383,35 @@ body.clandestine-mode .card img {
     filter: saturate(2) brightness(1.1) drop-shadow(0 0 5px var(--couleur-texte));
     border-color: var(--couleur-accent);
 }
+
+/* L'animation de flash néon */
+@keyframes neon-pulse {
+    0% { filter: brightness(1) contrast(1); }
+    50% { filter: brightness(1.5) contrast(1.2) hue-rotate(90deg); }
+    100% { filter: brightness(1) contrast(1); }
+}
+
+/* La classe d'animation que le JS va ajouter */
+.activating-ia {
+    animation: neon-pulse 0.4s ease-in-out 3; /* Pulse 3 fois rapidement */
+    pointer-events: none; /* Empêche de recliquer pendant l'animation */
+}
+
+/* Une transition douce pour toutes les couleurs */
+body {
+    transition: background-color 1s ease, color 1s ease, border-color 1s ease;
+}
+
+/* Animation de clignotement "Booting..." */
+@keyframes ia-glitch {
+    0% { opacity: 1; filter: contrast(1); }
+    25% { opacity: 0.8; filter: contrast(2) hue-rotate(90deg); }
+    50% { opacity: 1; filter: brightness(1.5); }
+    75% { opacity: 0.9; filter: sepia(1); }
+    100% { opacity: 1; filter: contrast(1); }
+}
+
+.activating-ia {
+    animation: ia-glitch 0.2s infinite; /* Clignote très vite pendant le chargement */
+    cursor: wait; /* Le curseur devient un sablier */
+}
