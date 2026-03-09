@@ -466,3 +466,36 @@ body.clandestine-mode .card.clandestine {
     display: flex; /* Affiche l'alcool (ou block selon ton design) */
     border: 1px solid var(--glow-orange); /* Petit rappel visuel du Secteur Alpha */
 }
+
+.ship-section {
+    background-color: #fdfaf5; /* Un beige très clair pour le contraste */
+    border: 1px solid #3e2723; /* Ton marron profond */
+    padding: 40px;
+    margin: 50px auto;
+    max-width: 900px;
+    box-shadow: 10px 10px 0px #3e2723; /* Ombre décalée style année 20 */
+}
+
+.ship-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.ship-image {
+    width: 300px;
+    filter: sepia(0.5); /* Donne un côté ancien à l'image */
+    border-radius: 5px;
+}
+
+.ship-specs {
+    font-family: 'Courier New', monospace;
+    color: #5d4037;
+}
+
+/* En mode clandestin, on fait briller le vaisseau */
+body.clandestine-mode .ship-image {
+    filter: sepia(0) hue-rotate(140deg) saturate(2); /* Effet néon/spatial */
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
