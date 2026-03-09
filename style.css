@@ -442,3 +442,27 @@ body.clandestine-mode .member-card img {
     border-color: var(--couleur-accent);
     box-shadow: 0 0 20px var(--couleur-accent);
 }
+/*Titre THE ROOT DAM */
+.glitch-title {
+    font-family: 'Courier New', Courier, monospace; /* Style terminal */
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--brown-deep);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    border-bottom: 2px solid var(--brown-deep);
+}
+/* Par défaut, on cache tout ce qui est clandestin */
+.card.clandestine {
+    display: none;
+}
+
+/* Quand le mode clandestin est activé sur le body */
+body.clandestine-mode .card.normale {
+    display: none; /* Cache le café */
+}
+
+body.clandestine-mode .card.clandestine {
+    display: flex; /* Affiche l'alcool (ou block selon ton design) */
+    border: 1px solid var(--glow-orange); /* Petit rappel visuel du Secteur Alpha */
+}

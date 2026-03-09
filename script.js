@@ -72,3 +72,37 @@ if (localStorage.getItem('clandestineMode') === 'enabled') {
         if (e.key === 'Enter') toggleSecretGarden();
     });
 });
+const elementsToHack = document.querySelectorAll('h1, p, button');
+
+elementsToHack.forEach(el => {
+    const originalText = el.innerText;
+    
+    el.addEventListener('mouseover', () => {
+        let iterations = 0;
+        const interval = setInterval(() => {
+            el.innerText = originalText
+                .split("")
+                .map((letter, index) => {
+                    if(index < iterations) return originalText[index];
+                    return Math.random() > 0.5 ? "1" : "0";
+                })
+                .join("");
+            
+            if(iterations >= originalText.length) clearInterval(interval);
+            iterations += 1/3; // Vitesse de décryptage
+        }, 30);
+    });
+});
+// Remplace le curseur par un emoji castor ou une image
+document.addEventListener('mousemove', (e) => {
+    const cursor = document.querySelector('.custom-cursor');
+    cursor.style.left = e.pageX + 'px';
+    cursor.style.top = e.pageY + 'px';
+});
+
+// Animation quand il "mange" un lien
+document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('mouseover', () => {
+        cursor.classList.add('eating'); // Ajoute une animation de mâchoire en CSS
+    });
+});
