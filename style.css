@@ -499,3 +499,59 @@ body.clandestine-mode .ship-image {
     filter: sepia(0) hue-rotate(140deg) saturate(2); /* Effet néon/spatial */
     box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
 }
+/* L'alerte qui s'affiche au milieu */
+.payload-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ff4d00; /* Rouge/Orange néon */
+    color: white;
+    padding: 20px;
+    border: 5px solid white;
+    box-shadow: 0 0 50px black;
+    z-index: 9999;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* L'effet de tremblement de l'écran */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    50% { transform: translate(-1px, 2px) rotate(1deg); }
+    100% { transform: translate(1px, 1px) rotate(0deg); }
+}
+
+.screen-shake {
+    animation: shake 0.2s infinite;
+}
+.post-it {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fdfd96;
+    padding: 10px;
+    transform: rotate(5deg);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    font-family: 'Comic Sans MS', cursive; /* Pour le côté manuscrit */
+    color: #333;
+    z-index: 100;
+}
+.ship-specs ul {
+    list-style: none; /* On enlève les points classiques */
+    padding: 0;
+}
+
+.ship-specs li::before {
+    content: "> "; /* On ajoute un chevron de terminal devant chaque ligne */
+    color: var(--couleur-accent);
+    font-weight: bold;
+}
+
+.ship-specs li {
+    margin-bottom: 10px;
+    border-left: 2px solid var(--couleur-accent); /* Une petite barre verticale */
+    padding-left: 10px;
+}
