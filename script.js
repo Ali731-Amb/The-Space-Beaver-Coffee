@@ -72,37 +72,39 @@ if (localStorage.getItem('clandestineMode') === 'enabled') {
         if (e.key === 'Enter') toggleSecretGarden();
     });
 });
-const elementsToHack = document.querySelectorAll('h1, p, button');
+/**
+ * Effet de décryptage binaire au survol
+ * S'active uniquement en mode clandestin
+ */
+const startHackerEffects = () => {
+    const elementsToHack = document.querySelectorAll('h1, p, button, .card h3');
 
-elementsToHack.forEach(el => {
-    const originalText = el.innerText;
-    
-    el.addEventListener('mouseover', () => {
-        let iterations = 0;
-        const interval = setInterval(() => {
-            el.innerText = originalText
-                .split("")
-                .map((letter, index) => {
-                    if(index < iterations) return originalText[index];
-                    return Math.random() > 0.5 ? "1" : "0";
-                })
-                .join("");
+    elementsToHack.forEach(el => {
+        // On sauvegarde le texte original dans un attribut data pour ne pas le perdre
+        if (!el.dataset.original) el.dataset.original = el.innerText;
+        
+        el.addEventListener('mouseover', () => {
+            // CONDITION CRUCIALE : On ne fait rien si on n'est pas en mode clandestin
+            if (!document.body.classList.contains('clandestine-mode')) return;
+
+            let iterations = 0;
+            const originalText = el.dataset.original;
             
-            if(iterations >= originalText.length) clearInterval(interval);
-            iterations += 1/3; // Vitesse de décryptage
-        }, 30);
+            const interval = setInterval(() => {
+                el.innerText = originalText
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iterations) return originalText[index];
+                        return Math.random() > 0.5 ? "1" : "0";
+                    })
+                    .join("");
+                
+                if(iterations >= originalText.length) clearInterval(interval);
+                iterations += 1/3;
+            }, 30);
+        });
     });
-});
-// Remplace le curseur par un emoji castor ou une image
-document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.custom-cursor');
-    cursor.style.left = e.pageX + 'px';
-    cursor.style.top = e.pageY + 'px';
-});
+};
 
-// Animation quand il "mange" un lien
-document.querySelectorAll('a').forEach(link => {
-    link.addEventListener('mouseover', () => {
-        cursor.classList.add('eating'); // Ajoute une animation de mâchoire en CSS
-    });
-});
+// On appelle la fonction pour préparer les écouteurs d'événements
+startHackerEffects();
