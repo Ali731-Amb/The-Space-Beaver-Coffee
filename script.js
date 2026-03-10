@@ -108,3 +108,34 @@ const startHackerEffects = () => {
 
 // On appelle la fonction pour préparer les écouteurs d'événements
 startHackerEffects();
+const payloadBtn = document.querySelector('.cta-button');
+
+if (payloadBtn) {
+    payloadBtn.addEventListener('click', () => {
+        // 1. On change le texte du bouton pour le côté "bourré"
+        payloadBtn.innerText = "ERREUR: TROP D'ALCOOL DANS LE SERVEUR";
+        
+        // 2. On crée une alerte qui envahit l'écran
+        const alertBox = document.createElement('div');
+        alertBox.className = 'payload-alert';
+        alertBox.innerHTML = `
+            <div class="alert-content">
+                <h1>⚠️ ALERTE CRITIQUE ⚠️</h1>
+                <p>Injection du payload en cours...</p>
+                <p>Statut : Castor ivre détecté sur le pont 42.</p>
+                <p>01010011 01001111 01010101 01001100 01000101 (SOULE)</p>
+            </div>
+        `;
+        document.body.appendChild(alertBox);
+
+        // 3. On fait vibrer l'écran
+        document.body.classList.add('screen-shake');
+
+        // 4. On nettoie après 3 secondes
+        setTimeout(() => {
+            alertBox.remove();
+            document.body.classList.remove('screen-shake');
+            payloadBtn.innerText = "INJECTER_LE_PAYLOAD";
+        }, 3000);
+    });
+}

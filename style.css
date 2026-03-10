@@ -1,4 +1,4 @@
-/* --- 1. LES VARIABLES (Ta palette de peinture) --- */
+/* --- 1. LES VARIABLES (palette de peinture) --- */
 :root {
     --couleur-bois: #f4ece1;    /* Beige clair pour le fond */
     --couleur-texte: #2d231b;   /* Marron très foncé (presque noir) */
@@ -6,7 +6,8 @@
     --police-titre: 'Bebas neue', sans-serif;
 }
 
-/* --- 2. LE SQUELETTE GLOBAL --- */
+/* --- 2. LE SQUELETTE GLOBAL --- 
+gere le fond de la page et la police de lecture */
 body {
     background-color: var(--couleur-bois);
     color: var(--couleur-texte);
@@ -16,7 +17,7 @@ body {
     line-height: 1.6; /* Espace entre les lignes pour la lisibilité */
 }
 
-/* --- 3. LE HEADER (Ton chapeau) --- */
+/* --- 3. LE HEADER & NAV --- */
 header {
     background-color: white;
     padding: 15px 5%;
@@ -62,7 +63,8 @@ nav a {
     text-transform: uppercase; /* Tout en majuscules */
 }
 
-/* --- 4. LA SECTION HERO (Ta vitrine) --- */
+/* --- 4. LA SECTION HERO (Ta vitrine) --- 
+Gros titre + Slogans */
 .hero {
     text-align: center; /* Centre tout le texte et l'image */
     padding: 50px 20px;
@@ -146,7 +148,7 @@ h1 {
 .search-box button:hover {
     background-color: var(--couleur-accent);
 }
-
+/*Menu du mode Beige*/
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
@@ -246,7 +248,7 @@ h1 {
     font-size: 1.4rem;
 }
 
-/* Le rôle (ex: Administrateur Système) */
+/* Le rôle */
 .role {
     color: var(--couleur-accent);
     font-weight: bold;
@@ -279,6 +281,7 @@ h1 {
         grid-template-columns: 1fr; /* Tout le monde en colonne sur téléphone */
     }
 }
+/*Formulaire de contact*/
 .contact-container {
 	max-width: 600px;
 	margin: 50px auto;
@@ -392,7 +395,7 @@ body.clandestine-mode .card img {
 }
 
 /* La classe d'animation que le JS va ajouter */
-.activating-ia {
+.activating-ia { /*pas sur que ça soit utile*/
     animation: neon-pulse 0.4s ease-in-out 3; /* Pulse 3 fois rapidement */
     pointer-events: none; /* Empêche de recliquer pendant l'animation */
 }
@@ -500,7 +503,7 @@ body.clandestine-mode .ship-image {
     box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
 }
 /* L'alerte qui s'affiche au milieu */
-.payload-alert {
+.payload-alert { /*Pas visible*/
     position: fixed;
     top: 50%;
     left: 50%;
@@ -554,4 +557,114 @@ body.clandestine-mode .ship-image {
     margin-bottom: 10px;
     border-left: 2px solid var(--couleur-accent); /* Une petite barre verticale */
     padding-left: 10px;
+}
+.ship-console {
+    background-color: #fdfaf5; /* Beige identique au fond */
+    border: 3px solid #2d231b; /* Ton marron foncé */
+    max-width: 900px;
+    margin: 50px auto;
+    box-shadow: 12px 12px 0px #2d231b; /* Ombre décalée solide */
+    overflow: hidden;
+}
+
+.console-header {
+    background-color: #2d231b;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.console-title {
+    color: #fdfaf5;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.console-body {
+    display: flex;
+    padding: 30px;
+    gap: 40px;
+    align-items: center;
+}
+
+.ship-visual {
+    position: relative;
+    flex: 1;
+    border: 2px solid #2d231b;
+}
+
+.ship-visual img {
+    width: 100%;
+    display: block;
+    filter: sepia(0.3) contrast(1.1); /* Effet photo ancienne technique */
+}
+
+.ship-data {
+    flex: 1.5;
+    font-family: 'Courier New', monospace;
+}
+
+.data-item {
+    border-bottom: 1px solid rgba(45, 35, 27, 0.2);
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: #8b5a2b; /* Ton marron d'accent */
+}
+
+.value {
+    color: #2d231b;
+    font-size: 1rem;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    .console-body { flex-direction: column; }
+}
+
+.clandestine-text, .clandestine-log{
+    display: none;
+}
+
+body .clandestine-mode .clandestine-text
+body .clandestine-mode .clandestine-log{
+    display: block !important;
+    color: var(--couleur-texte)
+}
+
+body.clandestine-mode .hero p:not(.clandestine-text){
+    display: none;
+}
+
+body.clandestine-mode img{
+    filter: sepia(1) hue-rotate(150deg) saturate(3) brightness(0.8);
+}
+
+.testimonial-grid{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.review-card{
+    background: white;
+    border: 2px dashed var(--couleur-texte);
+    padding: 15px;
+    max-width: 300 px;
+    font-style: italic;
+}
+
+body.clandestine-mode .status-item{
+    color: var(--couleur-accent);
+    text-shadow: 0 0 5px var(--couleur-accent);
 }
