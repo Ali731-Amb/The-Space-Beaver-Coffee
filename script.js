@@ -72,39 +72,6 @@ if (localStorage.getItem('clandestineMode') === 'enabled') {
         if (e.key === 'Enter') toggleSecretGarden();
     });
 });
-/**
- * Effet de décryptage binaire au survol
- * S'active uniquement en mode clandestin
- */
-const startHackerEffects = () => {
-    const elementsToHack = document.querySelectorAll('h1, p, button, .card h3');
-
-    elementsToHack.forEach(el => {
-        // On sauvegarde le texte original dans un attribut data pour ne pas le perdre
-        if (!el.dataset.original) el.dataset.original = el.innerText;
-        
-        el.addEventListener('mouseover', () => {
-            // CONDITION CRUCIALE : On ne fait rien si on n'est pas en mode clandestin
-            if (!document.body.classList.contains('clandestine-mode')) return;
-
-            let iterations = 0;
-            const originalText = el.dataset.original;
-            
-            const interval = setInterval(() => {
-                el.innerText = originalText
-                    .split("")
-                    .map((letter, index) => {
-                        if(index < iterations) return originalText[index];
-                        return Math.random() > 0.5 ? "1" : "0";
-                    })
-                    .join("");
-                
-                if(iterations >= originalText.length) clearInterval(interval);
-                iterations += 1/3;
-            }, 30);
-        });
-    });
-};
 
 // On appelle la fonction pour préparer les écouteurs d'événements
 startHackerEffects();
