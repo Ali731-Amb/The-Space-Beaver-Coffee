@@ -922,3 +922,107 @@ body.clandestine-mode .bio {
     transform: translate(3px, 3px);
     box-shadow: 0px 0px 0px var(--couleur-texte);
 }
+
+/* --- CUSTOM SCROLLBAR (Look Industriel) --- */
+/* La barre entière */
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: var(--couleur-bois); /* Fond beige comme ton site */
+}
+
+/* Le petit curseur qui monte et descend */
+::-webkit-scrollbar-thumb {
+    background-color: var(--couleur-texte); /* Marron très foncé */
+    border: 3px solid var(--couleur-bois); /* Crée un petit cadre autour */
+    border-radius: 10px;
+}
+
+/* Au survol du curseur */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--couleur-accent); /* Devient marron chaud au clic */
+}
+
+/* --- EFFET BOOT AU CHARGEMENT --- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #000;
+    z-index: 99999;
+    pointer-events: none;
+    animation: bootScreen 0.8s ease-out forwards; /* L'écran noir s'efface */
+}
+
+@keyframes bootScreen {
+    0% { opacity: 1; }
+    70% { opacity: 1; } /* Reste noir un court instant */
+    80% { opacity: 0.1; transform: scaleY(1); } /* Petit flash */
+    90% { opacity: 0.5; transform: scaleY(0.01); } /* Ligne de scan */
+    100% { opacity: 0; transform: scaleY(0); display: none; }
+}
+
+/* --- EFFETS CONSOLE DU VAISSEAU --- */
+.ship-console {
+    position: relative;
+}
+
+/* Le petit voyant lumineux */
+.console-header::after {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    background-color: #2ecc71; /* Vert "OK" */
+    border-radius: 50%;
+    margin-left: 15px;
+    box-shadow: 0 0 8px #2ecc71;
+    animation: ledPulse 2s infinite;
+}
+
+@keyframes ledPulse {
+    0% { opacity: 1; filter: brightness(1); }
+    50% { opacity: 0.4; filter: brightness(0.5); }
+    100% { opacity: 1; filter: brightness(1); }
+}
+
+/* En mode clandestin, le voyant passe au rouge/orange */
+body.clandestine-mode .console-header::after {
+    background-color: var(--couleur-accent);
+    box-shadow: 0 0 10px var(--couleur-accent);
+}
+
+.card img {
+    aspect-ratio: 1 / 1; /* Force un carré pour éviter les calculs du navigateur */
+    background-color: #eee; /* Affiche un carré gris en attendant la photo */
+}
+
+/* --- AMÉLIORATION LISIBILITÉ --- */
+
+.card h3 {
+    color: var(--couleur-texte); /* Ton marron très foncé */
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.card p {
+    color: #4a3f35; /* Un marron un peu plus clair que le noir pour le texte descriptif */
+    font-size: 0.95rem;
+}
+
+/* --- ET POUR LE MODE CLANDESTIN (NÉON) --- */
+body.clandestine-mode .card p {
+    color: #fff; /* On passe le texte en BLANC pur sur le fond noir */
+    text-shadow: 0 0 5px var(--couleur-texte); /* Petit halo néon jaune autour du texte blanc */
+    opacity: 1;
+}
+
+body.clandestine-mode .card h3 {
+    color: var(--couleur-texte); /* Jaune/Vert néon bien pétant */
+}
+
+.ship-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    content-visibility: auto; /* Optimisation moderne pour le rendu */
+}
