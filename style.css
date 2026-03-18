@@ -1086,3 +1086,30 @@ body.clandestine-mode .bio {
     background-color: #ffffff !important;
     min-height: 400px;
 }
+
+/* --- FIX URGENCE ÉQUIPAGE & IMAGES LOURDES --- */
+
+/* On verrouille la grille pour qu'elle ne bouge pas */
+.crew-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 40px;
+    align-items: start; /* Aligne les titres même si les images chargent mal */
+}
+
+/* On force la taille des ronds pour éviter le décalage */
+.member-card img {
+    width: 200px !important;
+    height: 200px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important; /* Important : ne déforme pas l'image */
+    display: block;
+    margin: 0 auto 15px auto;
+    background-color: #e0ddd5; /* Fond neutre en attendant le chargement */
+}
+
+/* On s'assure que le texte reste bien en dessous */
+.member-card {
+    text-align: center;
+    min-height: 350px; /* Réserve l'espace pour que le bas de page ne remonte pas */
+}
