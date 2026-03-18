@@ -7,14 +7,11 @@
    1. INITIALISATION & PERSISTANCE (Sécurité au chargement)
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    const savedMode = localStorage.getItem('clandestineMode');
+    // On force la suppression du mode clandestin pour démarrer en clair
+    localStorage.removeItem('clandestineMode');
+    document.body.classList.remove('clandestine-mode');
     
-    // Si le mode était actif avant de changer de page, on le remet direct
-    if (savedMode === 'true') {
-        document.body.classList.add('clandestine-mode');
-    }
-    
-    // On initialise les écouteurs de la barre de recherche
+    // On initialise le reste normalement
     initSearchConsole();
 });
 

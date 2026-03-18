@@ -1026,3 +1026,25 @@ body.clandestine-mode .card h3 {
     display: block;
     content-visibility: auto; /* Optimisation moderne pour le rendu */
 }
+
+/* --- ACCÉLÉRATION DU RENDU (FORCE BRUTE) --- */
+img {
+    content-visibility: auto; /* Ne calcule le rendu que si l'image est visible */
+    transition: opacity 0.5s ease-in; /* Évite le flash blanc agressif */
+    background: #f0ede5; /* Prévit un fond beige si l'image met 3s à venir */
+}
+
+/* On force une taille fixe pour éviter que les cartes sautent partout */
+.card img, .member-card img {
+    height: 180px !important;
+    width: 180px !important;
+    display: block;
+}
+.card h3 {
+    color: #1a1510 !important; /* Marron presque noir pour trancher sur le blanc */
+    text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.5); /* Effet relief pour la lisibilité */
+}
+
+.card p {
+    color: #333 !important; /* Gris très foncé, plus lisible que le marron clair */
+}
