@@ -2,15 +2,44 @@
  * Script de gestion de la serre clandestine
  * Respect de la rigueur et de la maintenabilité
  */
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.querySelector('.search-box input');
-    const searchBtn = document.querySelector('.search-box button');
+/* --- GESTION DU MODE CLANDESTIN PERSISTANT --- */
 
-    // Le code secret pour activer l'IA de la serre
-    const SECRET_KEY = "root"; 
-if (localStorage.getItem('clandestineMode') === 'enabled') {
-        applyClandestineStyle(true); // true pour dire "sans animation"
+// A. FONCTION POUR APPLIQUER LE MODE (On l'appelle au clic ou au chargement)
+function toggleClandestineMode(state) {
+    if (state === 'active') {
+        document.body.classList.add('clandestine-mode');
+        localStorage.setItem('siteMode', 'dark'); // On enregistre "dark"
+    } else {
+        document.body.classList.remove('clandestine-mode');
+        localStorage.setItem('siteMode', 'light'); // On enregistre "light"
     }
+}
+
+// B. AU CHARGEMENT : On vérifie la mémoire du navigateur
+document.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('siteMode');
+    if (savedMode === 'dark') {
+        toggleClandestineMode('active');
+    }
+});
+
+// C. LE DÉCLENCHEUR (Ton bouton de recherche)
+const searchBtn = document.querySelector('.search-box button');
+const searchInput = document.querySelector('.search-box input');
+
+if (searchBtn) {
+    searchBtn.addEventListener('click', () => {
+        const secretCode = searchInput.value.toLowerCase();
+        
+        if (secretCode === 'root') {
+            toggleClandestineMode('active');
+            searchInput.value = ''; // Vide la barre
+        } else if (secretCode === 'day' || secretCode === 'exit') {
+            toggleClandestineMode('light');
+            searchInput.value = '';
+        }
+    });
+}
 
     // --- ÉTAPE B : LA FONCTION DE TRANSFORMATION ---
     function applyClandestineStyle(immediate = false) {
@@ -71,7 +100,6 @@ if (localStorage.getItem('clandestineMode') === 'enabled') {
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') toggleSecretGarden();
     });
-});
 
 // On appelle la fonction pour préparer les écouteurs d'événements
 startHackerEffects();

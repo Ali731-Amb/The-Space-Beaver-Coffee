@@ -635,7 +635,7 @@ body.clandestine-mode .ship-image {
     display: none;
 }
 
-body .clandestine-mode .clandestine-text
+body .clandestine-mode .clandestine-text,
 body .clandestine-mode .clandestine-log{
     display: block !important;
     color: var(--couleur-texte)
@@ -649,22 +649,141 @@ body.clandestine-mode img{
     filter: sepia(1) hue-rotate(150deg) saturate(3) brightness(0.8);
 }
 
-.testimonial-grid{
+/* --- SECTION 10 : AVIS CLIENTS (RELOOKING) --- */
+.testimonial-grid {
     display: flex;
+    flex-wrap: wrap; /* Permet d'aller à la ligne si besoin */
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
+    padding: 40px 5%;
 }
 
-.review-card{
+.review-card {
     background: white;
-    border: 2px dashed var(--couleur-texte);
-    padding: 15px;
-    max-width: 300 px;
-    font-style: italic;
+    border: 2px solid var(--couleur-texte); /* Ligne pleine au lieu de pointillés */
+    padding: 25px;
+    width: 300px; /* Largeur fixe pour éviter qu'ils s'étalent */
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+}
+
+/* L'effet "Marron derrière" au survol comme les cartes du menu */
+.review-card:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 8px 8px 0px var(--couleur-accent);
+}
+
+.review-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.review-card span {
+    display: block;
+    font-weight: bold;
+    color: var(--couleur-accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
 body.clandestine-mode .status-item{
     color: var(--couleur-accent);
     text-shadow: 0 0 5px var(--couleur-accent);
+}
+/* On s'assure que la description (le <p>) n'est plus grise mais bien lisible */
+body.clandestine-mode .card p {
+    opacity: 0.9;
+}
+
+/* Optionnel : Si tu veux que le badge de prix ressorte encore plus */
+body.clandestine-mode .price {
+    background-color: var(--couleur-accent); /* Utilise le orange/rouge néon */
+    color: black; /* Texte noir sur fond néon pour un look "étiquette de danger" */
+}
+
+/* --- 9. PIMP DES AVIS (MODE CLANDESTIN) --- */
+
+/* On change le fond et la bordure des cartes d'avis */
+body.clandestine-mode .review-card {
+    background: #111;
+    border: 2px dashed var(--couleur-accent); /* Passe en orange/rouge néon */
+    color: var(--couleur-texte); /* Texte en jaune néon */
+    box-shadow: 0 0 10px rgba(255, 77, 0, 0.2);
+}
+
+/* On change la couleur de l'auteur de l'avis (le span) */
+body.clandestine-mode .review-card span {
+    color: var(--couleur-accent);
+    font-weight: bold;
+}
+
+/* --- LISIBILITÉ DES PRIX --- */
+body.clandestine-mode .price {
+    background-color: var(--couleur-accent) !important;
+    color: white !important;
+}
+
+/* --- BOUTON URGENCE --- */
+.emergency-exit {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #ff4d00;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+/* On ne l'affiche que si le mode clandestin est actif */
+body.clandestine-mode .emergency-exit {
+    display: block;
+}
+
+.emergency-exit:hover {
+    background: white;
+    color: #ff4d00;
+}
+
+/* --- LISIBILITÉ ÉQUIPAGE (MODE CLANDESTIN) --- */
+
+/* Ligne ~520 (Tout à la fin) */
+body.clandestine-mode .member-card h3 {
+    color: var(--couleur-texte); /* Le jaune/vert néon */
+}
+
+body.clandestine-mode .role {
+    color: var(--couleur-accent); /* Le rouge/orange néon */
+    text-shadow: 0 0 5px var(--couleur-accent);
+}
+
+body.clandestine-mode .bio {
+    color: #eee; /* Un blanc cassé pour que ce soit moins agressif que le néon */
+    font-style: normal;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+}
+
+/*barre qui scane */
+body.clandestine-mode::after {
+    content: "";
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 183, 0, 0.2);
+    box-shadow: 0 0 15px var(--couleur-texte);
+    animation: scanline 8s linear infinite;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+    to { top: 200%; }
 }
