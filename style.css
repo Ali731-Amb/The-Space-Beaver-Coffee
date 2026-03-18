@@ -1048,3 +1048,74 @@ img {
 .card p {
     color: #333 !important; /* Gris très foncé, plus lisible que le marron clair */
 }
+
+/* --- OPTIMISATION DE CHARGEMENT D'URGENCE --- */
+img {
+    /* Indique au navigateur de ne pas attendre l'image pour dessiner la page */
+    content-visibility: auto;
+    /* Evite que le texte saute quand l'image apparaît enfin */
+    contain-intrinsic-size: 200px 200px; 
+    /* Affiche un fond gris clair en attendant la photo */
+    background-color: #eee;
+    /* Charge l'image de manière asynchrone */
+    decoding: async;
+}
+
+/* On fixe la taille des cartes pour que le site soit stable direct */
+.card, .member-card {
+    min-height: 350px; 
+}
+
+.card img, .member-card img {
+    height: 180px !important;
+    width: 180px !important;
+    object-fit: cover;
+}
+
+/* --- CONTRASTE MAXIMUM POUR LES BOISSONS --- */
+.card h3 {
+    color: #000 !important; /* Noir pur pour le titre */
+    font-weight: 900 !important;
+}
+
+.card p {
+    color: #222 !important; /* Gris très foncé pour la description */
+    line-height: 1.2;
+}
+
+/* En mode clandestin, on passe tout en blanc/néon pour que ça "pète" sur le noir */
+body.clandestine-mode .card p, 
+body.clandestine-mode .bio {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px var(--couleur-texte);
+}
+/* --- CORRECTIF BOOT SCREEN (ÉVITE LE BLOCAGE) --- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    z-index: 10000; /* Très haut pour tout couvrir */
+    pointer-events: none; /* TRÈS IMPORTANT : permet de cliquer "à travers" même si c'est noir */
+    animation: bootScreen 1s ease-out forwards;
+}
+
+@keyframes bootScreen {
+    0% { opacity: 1; visibility: visible; }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; } /* On cache complètement l'élément à la fin */
+}
+/* --- ACCÉLÉRATEUR DE RENDU DES IMAGES --- */
+.card img, .member-card img, .ship-visual img {
+    image-rendering: -webkit-optimize-contrast; /* Améliore le rendu rapide */
+    transform: translateZ(0); /* Force l'utilisation de la carte graphique */
+    will-change: transform;
+    display: block;
+}
+
+/* On force un fond de couleur pour que le site n'ait pas l'air vide pendant le chargement */
+.card {
+    background-color: #ffffff !important;
+    min-height: 400px;
+}
