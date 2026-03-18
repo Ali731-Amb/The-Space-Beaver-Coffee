@@ -1,24 +1,16 @@
 /* ==========================================================================
-   1. VARIABLES & CONFIGURATION (La palette)
+   VERSION ORIGINALE RESTAURÉE & SÉCURISÉE
    ========================================================================== */
+
+/* --- 1. LES VARIABLES (TES COULEURS D'ORIGINE) --- */
 :root {
-    --couleur-bois: #f4ece1;    /* Fond beige clair */
-    --couleur-texte: #2d231b;   /* Marron ultra foncé */
+    --couleur-bois: #f4ece1;    /* Beige clair pour le fond */
+    --couleur-texte: #2d231b;   /* Marron très foncé */
     --couleur-accent: #8b5a2b;  /* Marron chaud */
     --police-titre: 'Bebas neue', sans-serif;
-    --transition-speed: 0.8s;
 }
 
-/* Mode Clandestin : Surcharge des variables */
-body.clandestine-mode {
-    --couleur-bois: #050505;    /* Noir profond */
-    --couleur-texte: #ffb700;   /* Jaune Néon */
-    --couleur-accent: #ff4d00;  /* Orange/Rouge Néon */
-}
-
-/* ==========================================================================
-   2. STRUCTURE GENERALE
-   ========================================================================== */
+/* --- 2. LE SQUELETTE GLOBAL --- */
 body {
     background-color: var(--couleur-bois);
     color: var(--couleur-texte);
@@ -26,21 +18,14 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    transition: background-color 0.5s ease; /* Pour un passage fluide au noir */
 }
 
-/* ==========================================================================
-   3. NAVIGATION & HEADER
-   ========================================================================== */
+/* --- 3. LE HEADER & NAV (TES STYLES) --- */
 header {
     background-color: white;
     padding: 15px 5%;
     border-bottom: 5px solid var(--couleur-texte);
-    transition: background-color var(--transition-speed) ease;
-}
-
-body.clandestine-mode header {
-    background-color: #000;
 }
 
 nav {
@@ -58,13 +43,6 @@ nav ul {
     padding: 0;
 }
 
-nav a {
-    text-decoration: none;
-    color: var(--couleur-texte) !important; /* Force la couleur néon en mode secret */
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
 .brand {
     display: flex;
     align-items: center;
@@ -74,45 +52,17 @@ nav a {
 .logo-img {
     width: 50px;
     height: auto;
+    vertical-align: middle;
 }
 
-/* ==========================================================================
-   4. BARRE DE RECHERCHE (Accès permanent)
-   ========================================================================== */
-.search-box {
-    display: flex;
-    align-items: center;
-    border: 2px solid var(--couleur-texte);
-    border-radius: 5px;
-    overflow: hidden;
-    background: white;
-    transition: all 0.3s;
+nav a {
+    text-decoration: none;
+    color: var(--couleur-texte);
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-body.clandestine-mode .search-box {
-    background: #111 !important;
-}
-
-.search-box input {
-    border: none;
-    padding: 8px 15px;
-    outline: none;
-    width: 180px;
-    background: transparent;
-    color: inherit;
-}
-
-.search-box button {
-    background-color: var(--couleur-texte);
-    border: none;
-    color: var(--couleur-bois);
-    padding: 8px 12px;
-    cursor: pointer;
-}
-
-/* ==========================================================================
-   5. SECTION HERO (Accueil)
-   ========================================================================== */
+/* --- 4. LA SECTION HERO --- */
 .hero {
     text-align: center;
     padding: 50px 20px;
@@ -136,7 +86,7 @@ h1 {
     display: inline-block;
     padding: 15px 30px;
     background-color: var(--couleur-texte);
-    color: var(--couleur-bois);
+    color: white;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
@@ -149,27 +99,49 @@ h1 {
     color: var(--couleur-texte);
 }
 
-/* ==========================================================================
-   6. GRILLES (Menu & Équipage)
-   ========================================================================== */
-.menu-grid, .crew-grid {
+/* --- 5. BARRE DE RECHERCHE --- */
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--couleur-texte);
+    border-radius: 5px;
+    overflow: hidden;
+    background: white;
+}
+
+.search-box input {
+    border: none;
+    padding: 8px 15px;
+    outline: none;
+    width: 180px;
+}
+
+.search-box button {
+    background-color: var(--couleur-texte);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* --- 6. MENU (CARTES BOISSONS) --- */
+.menu-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 30px;
-    padding: 50px 5%;
+    padding: 50px;
 }
 
-.card, .member-card {
+.card {
     background-color: white;
     padding: 20px;
     border: 3px solid var(--couleur-texte);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
-    transition: transform 0.3s, background-color var(--transition-speed);
-}
-
-body.clandestine-mode .card, 
-body.clandestine-mode .member-card {
-    background-color: #111;
 }
 
 .card:hover {
@@ -177,134 +149,154 @@ body.clandestine-mode .member-card {
     box-shadow: 10px 10px 0px var(--couleur-accent);
 }
 
-.card img, .member-card img {
+.card img {
     width: 180px;
     height: 180px;
     object-fit: cover;
+    border-radius: 10px;
     border: 3px solid var(--couleur-texte);
     margin-bottom: 15px;
-    transition: filter 0.5s;
 }
 
-/* Bio équipage */
-.bio { font-size: 0.95rem; font-style: italic; color: #444; }
-body.clandestine-mode .bio { color: #eee; font-style: normal; }
-body.clandestine-mode .role { color: var(--couleur-accent); font-weight: bold; }
+/* --- 7. ÉQUIPAGE (RETOUR AUX RONDS) --- */
+.crew-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 50px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-/* ==========================================================================
-   7. LA CONSOLE DU VAISSEAU (Beaver-One)
-   ========================================================================== */
-.ship-console {
-    background-color: white;
-    border: 3px solid var(--couleur-texte);
-    max-width: 900px;
+.member-card {
+    width: 280px;
+    text-align: center;
+}
+
+.member-card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* TES RONDS SONT LÀ */
+    border: 5px solid var(--couleur-accent);
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.member-card:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* --- 8. FORMULAIRE DE CONTACT (TON LOOK INITIAL) --- */
+.contact-container {
+    max-width: 600px;
     margin: 50px auto;
-    box-shadow: 12px 12px 0px var(--couleur-texte);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    background-color: white;
+    padding: 40px;
+    border: 3px solid var(--couleur-texte);
 }
 
-body.clandestine-mode .ship-console { background-color: #111; }
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group input, .form-group textarea {
+    padding: 10px;
+    border: 2px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- 9. LE VAISSEAU (TAILLE CORRIGÉE MAIS STYLE GARDÉ) --- */
+.ship-console {
+    background-color: #fdfaf5;
+    border: 3px solid #2d231b;
+    max-width: 800px; /* Un peu réduit pour éviter que l'image soit géante */
+    margin: 50px auto;
+    box-shadow: 12px 12px 0px #2d231b;
+}
 
 .console-body {
     display: flex;
     padding: 30px;
     gap: 40px;
-    align-items: stretch;
+    align-items: center;
 }
 
 .ship-visual {
-    flex: 1;
-    border: 2px solid var(--couleur-texte);
-    height: 250px; /* Hauteur fixe pour l'équilibre */
+    flex: 0 0 250px; /* L'image reste à 250px max */
+    border: 2px solid #2d231b;
 }
 
 .ship-visual img {
     width: 100%;
-    height: 100%;
     display: block;
-    object-fit: cover;
-}
-
-.ship-data {
-    flex: 1.5;
-    font-family: 'Courier New', monospace;
 }
 
 /* ==========================================================================
-   8. AVIS CLIENTS & SYSTEME DE GLITCH
+   10. LOGIQUE CLANDESTINE (TES NOUVELLES FONCTIONNALITÉS)
    ========================================================================== */
-.testimonial-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 40px 5%;
+
+/* ÉTAT PAR DÉFAUT : On cache le contenu clandestin */
+.card.clandestine, .info-secrete, .clandestine-text {
+    display: none !important;
 }
 
-.review-card {
-    background: white;
-    border: 2px solid var(--couleur-texte);
-    padding: 25px;
-    width: 300px;
-    transition: all 0.3s ease;
+/* --- MODE CLANDESTIN ACTIF --- */
+body.clandestine-mode {
+    --couleur-bois: #050505;
+    --couleur-texte: #ffb700;
+    --couleur-accent: #ff4d00;
 }
 
-body.clandestine-mode .review-card {
-    background: #111;
-    border: 2px dashed var(--couleur-accent);
+/* Inversion des affichages */
+body.clandestine-mode .card.normale, 
+body.clandestine-mode .info-normale {
+    display: none !important;
 }
 
-/* Animation Glitch */
-@keyframes textGlitch {
-    0% { transform: translate(0); text-shadow: none; }
-    20% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--couleur-accent); }
-    40% { transform: translate(-2px, -2px); text-shadow: -2px 0 var(--couleur-texte); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
+body.clandestine-mode .card.clandestine,
+body.clandestine-mode .info-secrete,
+body.clandestine-mode .clandestine-text {
+    display: block !important;
 }
 
+/* Couleurs du menu en mode secret */
+body.clandestine-mode nav a, 
+body.clandestine-mode .brand span {
+    color: var(--couleur-texte) !important;
+}
+
+/* Styles des blocs en mode secret */
+body.clandestine-mode .card, 
+body.clandestine-mode .member-card,
+body.clandestine-mode .ship-console,
+body.clandestine-mode .contact-container,
+body.clandestine-mode .search-box {
+    background-color: #111 !important;
+    border-color: var(--couleur-texte) !important;
+}
+
+/* Lisibilité de la Bio */
+body.clandestine-mode .bio {
+    color: #eee;
+}
+
+/* Animation Glitch sur les avis Trash */
 body.clandestine-mode .info-secrete p {
-    animation: textGlitch 3s infinite;
+    animation: colorGlitch 0.5s infinite;
 }
 
-/* ==========================================================================
-   9. LOGIQUE D'AFFICHAGE (Jour vs Nuit)
-   ========================================================================== */
-.info-secrete, .clandestine-text { display: none; }
-
-body.clandestine-mode .info-normale { display: none !important; }
-body.clandestine-mode .info-secrete, 
-body.clandestine-mode .clandestine-text { display: block !important; }
-
-/* Filtres images */
-body.clandestine-mode img {
-    filter: sepia(1) hue-rotate(150deg) saturate(3) brightness(0.8) contrast(1.2);
+@keyframes colorGlitch {
+    0% { color: #ffb700; }
+    50% { color: #ff4d00; }
+    100% { color: #ffb700; }
 }
-
-/* ==========================================================================
-   10. EFFETS SPECIAUX & BOUTONS
-   ========================================================================== */
-/* Le scan satellite */
-body.clandestine-mode::after {
-    content: "";
-    position: fixed;
-    top: -100%; left: 0; width: 100%; height: 2px;
-    background: rgba(255, 183, 0, 0.2);
-    box-shadow: 0 0 15px var(--couleur-texte);
-    animation: scanline 8s linear infinite;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-@keyframes scanline { to { top: 200%; } }
-
-/* Bouton Urgence */
-.emergency-exit {
-    display: none;
-    position: fixed; bottom: 20px; left: 20px;
-    background: #ff4d00; color: white; border: 2px solid white;
-    padding: 10px 15px; font-family: 'Courier New', monospace;
-    font-weight: bold; cursor: pointer; z-index: 10000;
-}
-
-body.clandestine-mode .emergency-exit { display: block; }
