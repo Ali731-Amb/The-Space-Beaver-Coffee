@@ -1568,10 +1568,52 @@ body.clandestine-mode::after {
 
 }
 
-
-
 @keyframes scanline {
 
     to { top: 200%; }
 
+}
+
+/* --- EFFET POLICE TRASH / GLITCH (MODE CLANDESTIN) --- */
+
+/* On applique l'effet sur les paragraphes des avis et les bios en mode secret */
+body.clandestine-mode .review-card p, 
+body.clandestine-mode .bio {
+    font-family: 'Courier New', Courier, monospace !important; /* Style terminal */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: trash-glitch 0.3s infinite; /* L'effet de tremblement */
+    position: relative;
+}
+
+/* L'animation qui fait bouger le texte et change la couleur */
+@keyframes trash-glitch {
+    0% { 
+        transform: translate(0); 
+        color: var(--couleur-texte); /* Jaune néon */
+    }
+    20% { 
+        transform: translate(-1px, 1px); 
+        color: var(--couleur-accent); /* Orange/Rouge néon */
+    }
+    40% { 
+        transform: translate(-1px, -1px); 
+        text-shadow: 2px 0 red;
+    }
+    60% { 
+        transform: translate(1px, 1px); 
+        color: #fff; 
+    }
+    80% { 
+        transform: translate(1px, -1px); 
+        text-shadow: -2px 0 cyan;
+    }
+    100% { 
+        transform: translate(0); 
+    }
+}
+
+/* Suppression de l'italique pour le côté "brut" */
+body.clandestine-mode .bio {
+    font-style: normal !important;
 }
