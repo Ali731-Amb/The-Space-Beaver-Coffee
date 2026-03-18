@@ -3,7 +3,13 @@
  * Respect de la rigueur et de la maintenabilité
  */
 /* --- GESTION DU MODE CLANDESTIN PERSISTANT --- */
-
+// Vérification immédiate au chargement
+(function() {
+    const savedMode = localStorage.getItem('clandestineMode');
+    if (savedMode === 'true') {
+        document.body.classList.add('clandestine-mode');
+    }
+})();
 // A. FONCTION POUR APPLIQUER LE MODE (On l'appelle au clic ou au chargement)
 function toggleClandestineMode(state) {
     if (state === 'active') {
@@ -27,17 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
 const searchBtn = document.querySelector('.search-box button');
 const searchInput = document.querySelector('.search-box input');
 
+function setClandestine(active) {
+    if (active) {
+        document.body.classList.add('clandestine-mode');
+        localStorage.setItem('clandestineMode', 'true');
+    } else {
+        document.body.classList.remove('clandestine-mode');
+        localStorage.setItem('clandestineMode', 'false');
+    }
+}
+
 if (searchBtn) {
     searchBtn.addEventListener('click', () => {
-        const secretCode = searchInput.value.toLowerCase();
-        
-        if (secretCode === 'root') {
-            toggleClandestineMode('active');
-            searchInput.value = ''; // Vide la barre
-        } else if (secretCode === 'day' || secretCode === 'exit') {
-            toggleClandestineMode('light');
-            searchInput.value = '';
-        }
+        const code = searchInput.value.toLowerCase();
+        if (code === 'root') setClandestine(true);
+        if (code === 'day' || code === 'exit') setClandestine(false);
+        searchInput.value = '';
     });
 }
 
