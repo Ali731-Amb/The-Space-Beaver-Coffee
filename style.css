@@ -1408,3 +1408,54 @@ body.clandestine-mode .adresse-terminal::after {
     display: block !important;
     letter-spacing: 1px !important;
 }
+/* --- RESET TOTAL POUR LE NOUVEAU BLOC --- */
+.final-dashboard-station {
+    display: block !important;        /* Pas de flex, pas de grid, juste du vertical pur */
+    width: 100% !important;
+    max-width: 550px !important;      /* Largeur des boîtes */
+    margin: 60px auto !important;     /* Centre tout dans la page */
+    clear: both !important;           /* Casse tous les "floats" qui traîneraient */
+}
+
+/* Force l'espacement et l'affichage en bloc */
+.final-dashboard-station .adresse-container, 
+.final-dashboard-station .horaires-container {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 30px !important;
+    padding: 30px !important;
+    background-color: #fffdfa !important;
+    border: 3px solid var(--couleur-texte) !important;
+    box-shadow: 12px 12px 0px var(--couleur-accent) !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+/* --- ADRESSE ET MODE CLANDESTIN --- */
+.adresse-terminal {
+    font-family: 'Courier New', monospace !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    color: #000 !important;
+}
+
+/* MODE CLANDESTIN ACTIVÉ */
+body.clandestine-mode .final-dashboard-station .adresse-container,
+body.clandestine-mode .final-dashboard-station .horaires-container {
+    background-color: #050505 !important;
+    border-color: var(--couleur-texte) !important;
+    box-shadow: 0 0 20px var(--couleur-texte) !important;
+}
+
+/* Masquage et remplacement du texte */
+body.clandestine-mode .adresse-terminal {
+    font-size: 0 !important;
+}
+
+body.clandestine-mode .adresse-terminal::after {
+    content: "⚠️ ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT] ⚠️" !important;
+    font-size: 1.1rem !important;
+    color: #ff4444 !important;
+    text-shadow: 0 0 10px #ff0000 !important;
+    display: block !important;
+}
