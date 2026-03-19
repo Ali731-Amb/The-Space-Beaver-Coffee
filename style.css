@@ -1410,7 +1410,7 @@ body.clandestine-mode .adresse-terminal::after {
 }
 /* --- RESET TOTAL POUR LE NOUVEAU BLOC --- */
 .final-dashboard-station {
-    display: block !important;        /* Pas de flex, pas de grid, juste du vertical pur */
+    display: table-column !important;        /* Pas de flex, pas de grid, juste du vertical pur */
     width: 100% !important;
     max-width: 550px !important;      /* Largeur des boîtes */
     margin: 60px auto !important;     /* Centre tout dans la page */
