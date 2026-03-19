@@ -1165,3 +1165,60 @@ body.clandestine-mode .card p {
     color: #ffffff !important; /* Blanc pur pour trancher */
     text-shadow: 0 0 5px var(--couleur-texte); /* Petit halo */
 }
+/* ==========================================================================
+   CORRECTION FINALE : FOND NOIR & HAUTE LISIBILITÉ DES BOISSONS
+   ========================================================================== */
+
+/* --- ÉTAT PAR DÉFAUT (MODE JOUR / BEIGE) --- */
+
+/* On passe le fond des cartes en NOIR INDUSTRIEL */
+.card {
+    background-color: #1a1a1a !important; /* Gris très foncé, moins agressif que le noir pur */
+    border: 3px solid var(--couleur-texte) !important; /* Bordure marron d'origine */
+    color: #ffffff !important; /* Force TOUT le texte en BLANC pur */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 0px rgba(0,0,0,0.2); /* Légère ombre pour le relief */
+}
+
+/* On force la lisibilité des textes intérieurs */
+.card h3 {
+    color: #ffffff !important; /* Titre en blanc pure */
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--couleur-accent); /* Ligne marron sous le titre */
+    padding-bottom: 5px;
+}
+
+.card p {
+    color: #e0e0e0 !important; /* Gris très clair pour la description, plus reposant que le blanc pur */
+    font-weight: 400 !important;
+    opacity: 1 !important; /* S'assure qu'il n'est pas semi-transparent */
+}
+
+/* Le prix (span) */
+.card span {
+    color: #ffcc00 !important; /* Jaune doré pour que le prix ressorte bien sur le noir */
+    font-weight: bold;
+}
+
+/* Effet de survol (hover) conservé mais adapté */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 10px 10px 0px var(--couleur-accent); /* Ombre marron d'origine */
+}
+
+/* --- ÉTAT CLANDESTIN (RESTE EN NÉON) --- */
+/* Pour être sûr que le mode secret garde ses couleurs */
+body.clandestine-mode .card {
+    background-color: #050505 !important; /* Noir profond */
+    border-color: var(--couleur-texte) !important; /* Bordure jaune néon */
+}
+
+body.clandestine-mode .card h3 {
+    color: var(--couleur-texte) !important; /* Jaune/Vert néon */
+}
+
+body.clandestine-mode .card p {
+    color: #ffffff !important; /* Blanc pur pour trancher */
+    text-shadow: 0 0 5px var(--couleur-texte); /* Petit halo */
+}
