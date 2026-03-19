@@ -1344,172 +1344,69 @@ body.clandestine-mode .horaires-list li:nth-child(3) span:last-child::after {
     text-shadow: 0 0 10px #ff0000;
 }
 
-/* --- ESTHÉTIQUE DE L'ADRESSE (Haut de page, Look "Terminal") --- */
+/* ==========================================================
+   BLOC FINAL UNIFIÉ : ADRESSE & HORAIRES (VERTICAL)
+   ========================================================== */
 
-/* On cible le container de l'adresse (ajuste le sélecteur si besoin, ex: .navbar-address) */
-.address-container {
-    font-family: 'Courier New', Courier, monospace !important; /* Police terminal informatique */
-    font-size: 1rem !important;
-    letter-spacing: 0.5px;
-    opacity: 0.9;
-    color: var(--couleur-texte) !important; /* Force le jaune/vert néon en mode clandestin */
+/* 1. Force l'empilage des deux blocs l'un sur l'autre */
+.info-wrapper {
+    display: flex !important;
+    flex-direction: column !important; 
+    align-items: center !important;    
+    gap: 25px !important;
+    margin: 40px auto !important;
+    width: 100% !important;
 }
 
-/* On force le texte original pour qu'il soit bien celui de la photo */
-/* (Note : Si ton HTML a déjà ce texte, cette ligne est juste une sécurité) */
-.address-container span {
-    content: "Barrage n°42, Secteur Spatial Alpha" !important;
+/* 2. Style commun (Taille identique pour Adresse et Horaires) */
+.adresse-container, .horaires-container {
+    width: 500px !important; /* Largeur fixe pour l'alignement */
+    padding: 30px !important;
+    background-color: #fffdfa !important;
+    border: 3px solid var(--couleur-texte) !important;
+    box-shadow: 12px 12px 0px var(--couleur-accent) !important;
+    text-align: center !important;
+    box-sizing: border-box;
 }
 
-/* AJOUT DE COORDONNÉES SPATIALES ET D'UNE ICÔNE SPATIALE */
-.address-container::before {
-    content: "📡 "; /* Petit radar ou icône de transmission */
-    margin-right: 5px;
-}
-
-.address-container::after {
-    content: " [REF: X.142 | Y.001 | Z.999] (Alpha-Class Beacon)";
-    display: inline; /* Reste sur la même ligne */
-    font-size: 0.8rem;
-    color: var(--couleur-accent) !important; /* Orange néon pour le texte technique */
-    margin-left: 10px;
-}
-
-/* --- OPTIMISATION MODE CLANDESTIN (Pour plus de contraste) --- */
-body.clandestine-mode .address-container {
-    text-shadow: 0 0 8px var(--couleur-texte); /* Halo néon autour du texte jaune */
-}
-/* --- STYLE ADRESSE TERMINAL --- */
+/* 3. Style du texte de l'adresse */
 .adresse-terminal {
     font-family: 'Courier New', monospace !important;
-    font-size: 1.1rem !important;
-    color: var(--couleur-texte) !important;
-    letter-spacing: 1px;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    color: #1a1510 !important;
+    display: block !important;
 }
 
-.adresse-terminal::after {
-    content: " [REF: X.142 | Y.001 | Z.999]";
-    color: var(--couleur-accent) !important;
-    font-size: 0.9rem;
-    margin-left: 10px;
-}
+/* ==========================================================
+   MODE CLANDESTIN (FORCÉ)
+   ========================================================== */
 
-/* --- STYLE DIMANCHE & CLIGNOTEMENT --- */
-@keyframes alert-blink {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(1.02); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-/* En mode clandestin uniquement */
-body.clandestine-mode .dimanche-alerte {
-    color: #ff0000 !important;
-    text-shadow: 0 0 10px #ff0000;
-    animation: alert-blink 1s infinite !important;
-}
-
-/* Changement de texte automatique en mode clandestin */
-body.clandestine-mode .dimanche-alerte span:last-child {
-    font-size: 0; 
-}
-
-body.clandestine-mode .dimanche-alerte span:last-child::after {
-    content: "DANGER : ACCÈS INTERDIT";
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-}
-/* --- BLOC ADRESSE SPÉCIFIQUE --- */
-
-.adresse-container {
-    flex: 1;
-    min-width: 320px;
-    max-width: 500px;
-    padding: 35px;
-    background-color: #fffdfa;
-    border: 3px solid var(--couleur-texte);
-    box-shadow: 12px 12px 0px var(--couleur-accent);
-    text-align: center;
-}
-
-.adresse-terminal {
-    font-family: 'Courier New', monospace;
-    font-size: 1.3rem;
-    font-weight: bold;
-    display: block;
-    line-height: 1.4;
-    color: #000; /* Noir pour la lisibilité en mode jour */
-}
-
-/* --- ADRESSE EN MODE CLANDESTIN --- */
-
-body.clandestine-mode .adresse-container {
-    background-color: #050505;
-    border-color: var(--couleur-texte); /* Ton jaune/vert néon */
-    box-shadow: 0 0 25px var(--couleur-texte);
-}
-
-body.clandestine-mode .adresse-terminal {
-    font-size: 0; /* On cache l'adresse normale */
-}
-
-body.clandestine-mode .adresse-terminal::after {
-    content: "ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT]";
-    font-size: 1.1rem;
-    color: #ff4444; /* Rouge alerte pour le côté clandestin */
-    text-shadow: 0 0 10px #ff0000;
-    letter-spacing: 1px;
-    display: block;
-}
-/* --- MISE EN PAGE VERTICALE --- */
-.info-wrapper {
-    display: flex;
-    flex-direction: column; /* Force l'alignement vertical */
-    align-items: center;    /* Centre horizontalement les blocs */
-    gap: 20px;              /* Espace entre l'adresse et les horaires */
-    margin: 40px auto;
-}
-
-/* --- STYLE DE L'ADRESSE (COHÉRENT AVEC HORAIRES) --- */
-.adresse-container {
-    padding: 20px 35px;
-    background-color: #fffdfa;
-    border: 3px solid var(--couleur-texte);
-    box-shadow: 12px 12px 0px var(--couleur-accent);
-    min-width: 450px;       /* Largeur similaire aux horaires */
-    text-align: center;
-}
-
-.adresse-terminal {
-    font-family: 'Courier New', monospace;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #1a1510;
-}
-
-/* --- MODE CLANDESTIN (CHANGEMENT AUTOMATIQUE) --- */
-
-/* On force le fond noir et l'effet néon sur l'adresse */
-body.clandestine-mode .adresse-container {
+/* Fond noir et lueur néon pour les deux boîtes */
+body.clandestine-mode .adresse-container,
+body.clandestine-mode .horaires-container {
     background-color: #050505 !important;
-    border-color: var(--couleur-texte) !important; /* Jaune/Vert néon */
+    border-color: var(--couleur-texte) !important;
     box-shadow: 0 0 20px var(--couleur-texte) !important;
 }
 
-/* On change le texte de l'adresse en mode clandestin */
+/* Cache le texte original de l'adresse */
 body.clandestine-mode .adresse-terminal {
-    font-size: 0 !important; /* Cache le texte original (Barrage n°42...) */
+    font-size: 0 !important;
 }
 
+/* Affiche le texte secret d'alerte */
 body.clandestine-mode .adresse-terminal::after {
-    content: "⚠️ ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT] ⚠️";
+    content: "⚠️ ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT] ⚠️" !important;
     font-size: 1.1rem !important;
-    color: #ff4444 !important; /* Rouge pour l'alerte */
-    text-shadow: 0 0 10px #ff0000;
-    display: block;
-    letter-spacing: 1px;
+    color: #ff4444 !important; /* Rouge Alerte */
+    text-shadow: 0 0 10px #ff0000 !important;
+    letter-spacing: 1px !important;
+    display: block !important;
 }
 
-/* Synchronisation du titre des horaires si nécessaire */
-body.clandestine-mode .info-secrete {
-    color: var(--couleur-accent) !important;
+/* Clignotement du Dimanche (Inchangé mais sécurisé) */
+body.clandestine-mode .dimanche-alerte {
+    animation: alert-blink 1s infinite !important;
+    color: #ff0000 !important;
 }
