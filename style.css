@@ -1379,3 +1379,42 @@ body.clandestine-mode .horaires-list li:nth-child(3) span:last-child::after {
 body.clandestine-mode .address-container {
     text-shadow: 0 0 8px var(--couleur-texte); /* Halo néon autour du texte jaune */
 }
+/* --- STYLE ADRESSE TERMINAL --- */
+.adresse-terminal {
+    font-family: 'Courier New', monospace !important;
+    font-size: 1.1rem !important;
+    color: var(--couleur-texte) !important;
+    letter-spacing: 1px;
+}
+
+.adresse-terminal::after {
+    content: " [REF: X.142 | Y.001 | Z.999]";
+    color: var(--couleur-accent) !important;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+/* --- STYLE DIMANCHE & CLIGNOTEMENT --- */
+@keyframes alert-blink {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.02); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* En mode clandestin uniquement */
+body.clandestine-mode .dimanche-alerte {
+    color: #ff0000 !important;
+    text-shadow: 0 0 10px #ff0000;
+    animation: alert-blink 1s infinite !important;
+}
+
+/* Changement de texte automatique en mode clandestin */
+body.clandestine-mode .dimanche-alerte span:last-child {
+    font-size: 0; 
+}
+
+body.clandestine-mode .dimanche-alerte span:last-child::after {
+    content: "DANGER : ACCÈS INTERDIT";
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+}
