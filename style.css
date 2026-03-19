@@ -1033,10 +1033,7 @@ img {
     content-visibility: auto;
     /* Evite que le texte saute quand l'image apparaît enfin */
     contain-intrinsic-size: 200px 200px; 
-    /* Affiche un fond gris clair en attendant la photo */
     background-color: #eee;
-    /* Charge l'image de manière asynchrone */
-    decoding: async;
 }
 
 /* On fixe la taille des cartes pour que le site soit stable direct */
@@ -1221,4 +1218,66 @@ body.clandestine-mode .card h3 {
 body.clandestine-mode .card p {
     color: #ffffff !important; /* Blanc pur pour trancher */
     text-shadow: 0 0 5px var(--couleur-texte); /* Petit halo */
+}
+
+/* --- SECTION HORAIRES (INDEX) --- */
+.horaires-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fffdfa; /* Beige très clair */
+    border: 3px solid var(--couleur-texte);
+    box-shadow: 12px 12px 0px var(--couleur-accent);
+    text-align: center;
+}
+
+.horaires-container h2 {
+    font-family: var(--police-titre);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--couleur-texte);
+    text-transform: uppercase;
+}
+
+.horaires-list {
+    list-style: none;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.3rem; /* On met en gros comme demandé */
+    font-weight: bold;
+}
+
+.horaires-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+}
+
+.horaires-list li span:last-child {
+    color: var(--couleur-accent);
+}
+
+/* --- MODE CLANDESTIN : LES HORAIRES DE L'OMBRE --- */
+body.clandestine-mode .horaires-container {
+    background-color: #050505;
+    border-color: var(--couleur-texte); /* Jaune/Vert Néon */
+    box-shadow: 0 0 20px var(--couleur-texte);
+}
+
+body.clandestine-mode .horaires-container h2 {
+    color: var(--couleur-accent); /* Orange Néon */
+    text-shadow: 0 0 10px var(--couleur-accent);
+    content: "OPÉRATIONS SECRÈTES"; /* Note : Le texte HTML ne changera pas, mais on peut ruser en CSS si besoin */
+}
+
+body.clandestine-mode .horaires-list li {
+    color: var(--couleur-texte);
+    border-bottom: 1px solid var(--couleur-texte);
+}
+
+/* On change les heures pour le mode secret via CSS */
+body.clandestine-mode .horaires-list li span:last-child {
+    color: var(--couleur-accent);
+    font-style: italic;
 }
