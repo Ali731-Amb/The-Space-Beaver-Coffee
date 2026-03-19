@@ -1460,3 +1460,56 @@ body.clandestine-mode .adresse-terminal::after {
     letter-spacing: 1px;
     display: block;
 }
+/* --- MISE EN PAGE VERTICALE --- */
+.info-wrapper {
+    display: flex;
+    flex-direction: column; /* Force l'alignement vertical */
+    align-items: center;    /* Centre horizontalement les blocs */
+    gap: 20px;              /* Espace entre l'adresse et les horaires */
+    margin: 40px auto;
+}
+
+/* --- STYLE DE L'ADRESSE (COHÉRENT AVEC HORAIRES) --- */
+.adresse-container {
+    padding: 20px 35px;
+    background-color: #fffdfa;
+    border: 3px solid var(--couleur-texte);
+    box-shadow: 12px 12px 0px var(--couleur-accent);
+    min-width: 450px;       /* Largeur similaire aux horaires */
+    text-align: center;
+}
+
+.adresse-terminal {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1a1510;
+}
+
+/* --- MODE CLANDESTIN (CHANGEMENT AUTOMATIQUE) --- */
+
+/* On force le fond noir et l'effet néon sur l'adresse */
+body.clandestine-mode .adresse-container {
+    background-color: #050505 !important;
+    border-color: var(--couleur-texte) !important; /* Jaune/Vert néon */
+    box-shadow: 0 0 20px var(--couleur-texte) !important;
+}
+
+/* On change le texte de l'adresse en mode clandestin */
+body.clandestine-mode .adresse-terminal {
+    font-size: 0 !important; /* Cache le texte original (Barrage n°42...) */
+}
+
+body.clandestine-mode .adresse-terminal::after {
+    content: "⚠️ ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT] ⚠️";
+    font-size: 1.1rem !important;
+    color: #ff4444 !important; /* Rouge pour l'alerte */
+    text-shadow: 0 0 10px #ff0000;
+    display: block;
+    letter-spacing: 1px;
+}
+
+/* Synchronisation du titre des horaires si nécessaire */
+body.clandestine-mode .info-secrete {
+    color: var(--couleur-accent) !important;
+}
