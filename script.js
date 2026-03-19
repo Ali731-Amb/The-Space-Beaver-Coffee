@@ -4,22 +4,28 @@
  */
 
 /* ==========================================================================
-   1. INITIALISATION & PERSISTANCE (Sécurité au chargement)
+   1. GESTION DE LA PERSISTANCE (MODE CLANDESTIN)
    ========================================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. On vérifie si le mode clandestin était actif dans la session précédente
+
+// Fonction pour appliquer le mode selon le stockage local
+const applyClandestineState = () => {
     const isClandestine = localStorage.getItem('clandestineMode') === 'true';
-    
-    // 2. Si oui, on l'applique immédiatement au body
     if (isClandestine) {
         document.body.classList.add('clandestine-mode');
-        console.log("⚡ Mode clandestin maintenu (Session active)");
+        console.log("OS : Mode Clandestin [ACTIF]");
     } else {
-        // Sinon, on s'assure d'être en mode normal
         document.body.classList.remove('clandestine-mode');
+        console.log("OS : Mode Normal [ACTIF]");
     }
+};
+
+// Exécution immédiate (avant même le chargement complet du DOM pour éviter le flash blanc)
+applyClandestineState();
+
+// Exécution au chargement du DOM pour initialiser les fonctions annexes
+document.addEventListener('DOMContentLoaded', () => {
+    applyClandestineState();
     
-    // 3. On initialise le reste normalement
     if (typeof initSearchConsole === "function") {
         initSearchConsole();
     }
