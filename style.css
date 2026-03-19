@@ -1418,3 +1418,45 @@ body.clandestine-mode .dimanche-alerte span:last-child::after {
     font-size: 1.3rem;
     letter-spacing: 2px;
 }
+/* --- BLOC ADRESSE SPÉCIFIQUE --- */
+
+.adresse-container {
+    flex: 1;
+    min-width: 320px;
+    max-width: 500px;
+    padding: 35px;
+    background-color: #fffdfa;
+    border: 3px solid var(--couleur-texte);
+    box-shadow: 12px 12px 0px var(--couleur-accent);
+    text-align: center;
+}
+
+.adresse-terminal {
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: block;
+    line-height: 1.4;
+    color: #000; /* Noir pour la lisibilité en mode jour */
+}
+
+/* --- ADRESSE EN MODE CLANDESTIN --- */
+
+body.clandestine-mode .adresse-container {
+    background-color: #050505;
+    border-color: var(--couleur-texte); /* Ton jaune/vert néon */
+    box-shadow: 0 0 25px var(--couleur-texte);
+}
+
+body.clandestine-mode .adresse-terminal {
+    font-size: 0; /* On cache l'adresse normale */
+}
+
+body.clandestine-mode .adresse-terminal::after {
+    content: "ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT]";
+    font-size: 1.1rem;
+    color: #ff4444; /* Rouge alerte pour le côté clandestin */
+    text-shadow: 0 0 10px #ff0000;
+    letter-spacing: 1px;
+    display: block;
+}
