@@ -1345,43 +1345,48 @@ body.clandestine-mode .horaires-list li:nth-child(3) span:last-child::after {
 }
 
 /* ==========================================================
-   FORCE L'AFFICHAGE EN COLONNE (GRID SYSTEM)
+   FORCE L'EMPILAGE VERTICAL (MÉTHODE BRUTE)
    ========================================================== */
 
-/* On force le conteneur à n'avoir qu'une seule colonne centrale */
+/* 1. On force le parent à ne pas laisser ses enfants s'échapper sur les côtés */
 .info-wrapper {
-    display: grid !important;
-    grid-template-columns: 1fr !important; /* UNE SEULE COLONNE */
-    justify-items: center !important;      /* Centre les enfants dans la colonne */
-    gap: 30px !important;
-    margin: 50px auto !important;
+    display: block !important; /* On oublie Flex/Grid, on revient au flux vertical de base */
     width: 100% !important;
+    max-width: 600px !important; /* Largeur du bloc la plus large */
+    margin: 40px auto !important; /* Centre le tout dans la page */
+    text-align: center !important;
 }
 
-/* On unifie la taille des boîtes pour qu'elles soient identiques */
+/* 2. On force chaque enfant direct à devenir un bloc indépendant et centré */
+.info-wrapper > div {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 30px !important; /* Espace entre l'adresse et les horaires */
+    box-sizing: border-box !important;
+}
+
+/* 3. On uniformise le look des deux boîtes (Adresse et Horaires) */
 .adresse-container, 
 .horaires-container {
-    width: 100% !important;
-    max-width: 500px !important; /* Largeur fixe pour l'alignement vertical */
     padding: 30px !important;
     background-color: #fffdfa !important;
     border: 3px solid var(--couleur-texte) !important;
-    box-shadow: 10px 10px 0px var(--couleur-accent) !important;
-    text-align: center !important;
-    display: block !important; /* Annule tout ancien inline-block */
+    box-shadow: 12px 12px 0px var(--couleur-accent) !important;
 }
 
-/* --- TEXTE ET MODE CLANDESTIN --- */
-
-/* On s'assure que le texte de l'adresse est bien visible en noir par défaut */
+/* 4. Style du texte de l'adresse */
 .adresse-terminal {
     font-family: 'Courier New', monospace !important;
     font-size: 1.2rem !important;
     font-weight: bold !important;
     color: #000 !important;
+    display: block !important;
 }
 
-/* Changement radical en mode clandestin */
+/* ==========================================================
+   MODE CLANDESTIN (FORCÉ)
+   ========================================================== */
+
 body.clandestine-mode .adresse-container,
 body.clandestine-mode .horaires-container {
     background-color: #050505 !important;
@@ -1389,15 +1394,17 @@ body.clandestine-mode .horaires-container {
     box-shadow: 0 0 20px var(--couleur-texte) !important;
 }
 
-/* Masquage et remplacement du texte de l'adresse */
+/* Masquage du texte original */
 body.clandestine-mode .adresse-terminal {
     font-size: 0 !important;
 }
 
+/* Texte secret */
 body.clandestine-mode .adresse-terminal::after {
     content: "⚠️ ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT] ⚠️" !important;
     font-size: 1.1rem !important;
     color: #ff4444 !important;
     text-shadow: 0 0 10px #ff0000 !important;
     display: block !important;
+    letter-spacing: 1px !important;
 }
