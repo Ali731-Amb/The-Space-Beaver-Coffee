@@ -1281,3 +1281,101 @@ body.clandestine-mode .horaires-list li span:last-child {
     color: var(--couleur-accent);
     font-style: italic;
 }
+
+/* --- EFFET CLIGNOTANT POUR LE DIMANCHE --- */
+
+/* On cible la dernière ligne de la liste (le dimanche) */
+.horaires-list li:last-child {
+    transition: all 0.3s;
+}
+
+/* Effet en mode clandestin uniquement */
+body.clandestine-mode .horaires-list li:last-child {
+    color: #ff0000 !important; /* Rouge Alerte */
+    text-shadow: 0 0 10px #ff0000;
+    animation: alert-blink 1s infinite; /* Clignote à l'infini */
+}
+
+/* L'animation de clignotement */
+@keyframes alert-blink {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.02); } /* Réduit l'opacité et grossit un poil */
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Petit hack pour changer le texte "Fermé" en "ACCÈS INTERDIT" sans JS */
+body.clandestine-mode .horaires-list li:last-child span:last-child {
+    font-size: 0; /* On cache le texte original */
+}
+
+body.clandestine-mode .horaires-list li:last-child span:last-child::after {
+    content: "DANGER : ACCÈS INTERDIT"; /* On affiche le nouveau */
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+}
+/* --- CHANGEMENT DES HORAIRES (CLANDESTIN) --- */
+
+/* Cible les span contenant les heures (ex: 07:00 - 19:00) */
+body.clandestine-mode .horaires-list li span:last-child {
+    font-size: 0; /* On cache le texte original */
+}
+
+/* --- AJOUT DES FENÊTRES DE NAVIGATION SECRÈTES --- */
+
+/* Lundi - Vendredi */
+body.clandestine-mode .horaires-list li:nth-child(1) span:last-child::after {
+    content: "23:00 - 04:00 (Nuit d'Opérations)";
+    font-size: 1.1rem; /* On remet la taille */
+    font-style: normal;
+}
+
+/* Samedi */
+body.clandestine-mode .horaires-list li:nth-child(2) span:last-child::after {
+    content: "20:00 - 06:00 (Fret lourd)";
+    font-size: 1.1rem;
+    font-style: normal;
+}
+
+/* Dimanche */
+body.clandestine-mode .horaires-list li:nth-child(3) span:last-child::after {
+    content: "OPÉRATION CIBLE ALPHA (Strictement Interdit)";
+    font-size: 1.1rem;
+    color: #ff0000 !important; /* On force le rouge alerte */
+    text-shadow: 0 0 10px #ff0000;
+}
+
+/* --- ESTHÉTIQUE DE L'ADRESSE (Haut de page, Look "Terminal") --- */
+
+/* On cible le container de l'adresse (ajuste le sélecteur si besoin, ex: .navbar-address) */
+.address-container {
+    font-family: 'Courier New', Courier, monospace !important; /* Police terminal informatique */
+    font-size: 1rem !important;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+    color: var(--couleur-texte) !important; /* Force le jaune/vert néon en mode clandestin */
+}
+
+/* On force le texte original pour qu'il soit bien celui de la photo */
+/* (Note : Si ton HTML a déjà ce texte, cette ligne est juste une sécurité) */
+.address-container span {
+    content: "Barrage n°42, Secteur Spatial Alpha" !important;
+}
+
+/* AJOUT DE COORDONNÉES SPATIALES ET D'UNE ICÔNE SPATIALE */
+.address-container::before {
+    content: "📡 "; /* Petit radar ou icône de transmission */
+    margin-right: 5px;
+}
+
+.address-container::after {
+    content: " [REF: X.142 | Y.001 | Z.999] (Alpha-Class Beacon)";
+    display: inline; /* Reste sur la même ligne */
+    font-size: 0.8rem;
+    color: var(--couleur-accent) !important; /* Orange néon pour le texte technique */
+    margin-left: 10px;
+}
+
+/* --- OPTIMISATION MODE CLANDESTIN (Pour plus de contraste) --- */
+body.clandestine-mode .address-container {
+    text-shadow: 0 0 8px var(--couleur-texte); /* Halo néon autour du texte jaune */
+}
