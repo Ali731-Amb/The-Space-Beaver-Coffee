@@ -7,14 +7,23 @@
    1. INITIALISATION & PERSISTANCE (Sécurité au chargement)
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    // On force la suppression du mode clandestin pour démarrer en clair
-    localStorage.removeItem('clandestineMode');
-    document.body.classList.remove('clandestine-mode');
+    // 1. On vérifie si le mode clandestin était actif dans la session précédente
+    const isClandestine = localStorage.getItem('clandestineMode') === 'true';
     
-    // On initialise le reste normalement
-    initSearchConsole();
+    // 2. Si oui, on l'applique immédiatement au body
+    if (isClandestine) {
+        document.body.classList.add('clandestine-mode');
+        console.log("⚡ Mode clandestin maintenu (Session active)");
+    } else {
+        // Sinon, on s'assure d'être en mode normal
+        document.body.classList.remove('clandestine-mode');
+    }
+    
+    // 3. On initialise le reste normalement
+    if (typeof initSearchConsole === "function") {
+        initSearchConsole();
+    }
 });
-
 /* ==========================================================================
    2. LOGIQUE DU MODE CLANDESTIN (Le coeur du piratage)
    ========================================================================== */
