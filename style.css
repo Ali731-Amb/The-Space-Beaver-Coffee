@@ -1345,46 +1345,43 @@ body.clandestine-mode .horaires-list li:nth-child(3) span:last-child::after {
 }
 
 /* ==========================================================
-   FORCE L'AFFICHAGE EN COLONNE (MODE DASHBOARD)
+   FORCE L'AFFICHAGE EN COLONNE (GRID SYSTEM)
    ========================================================== */
 
-/* On force le parent à empiler ses enfants verticalement */
+/* On force le conteneur à n'avoir qu'une seule colonne centrale */
 .info-wrapper {
-    display: flex !important;
-    flex-direction: column !important; /* L'un sur l'autre */
-    align-items: center !important;    /* Centre horizontalement */
-    justify-content: center !important;
-    gap: 30px !important;              /* Espace entre les deux blocs */
-    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important; /* UNE SEULE COLONNE */
+    justify-items: center !important;      /* Centre les enfants dans la colonne */
+    gap: 30px !important;
     margin: 50px auto !important;
+    width: 100% !important;
 }
 
-/* On donne exactement la même taille aux deux boîtes */
+/* On unifie la taille des boîtes pour qu'elles soient identiques */
 .adresse-container, 
 .horaires-container {
     width: 100% !important;
-    max-width: 550px !important; /* Taille fixe pour l'alignement */
+    max-width: 500px !important; /* Largeur fixe pour l'alignement vertical */
     padding: 30px !important;
     background-color: #fffdfa !important;
     border: 3px solid var(--couleur-texte) !important;
-    box-shadow: 12px 12px 0px var(--couleur-accent) !important;
+    box-shadow: 10px 10px 0px var(--couleur-accent) !important;
     text-align: center !important;
-    box-sizing: border-box !important;
+    display: block !important; /* Annule tout ancien inline-block */
 }
 
-/* Style du texte de l'adresse */
+/* --- TEXTE ET MODE CLANDESTIN --- */
+
+/* On s'assure que le texte de l'adresse est bien visible en noir par défaut */
 .adresse-terminal {
     font-family: 'Courier New', monospace !important;
     font-size: 1.2rem !important;
     font-weight: bold !important;
-    color: #1a1510 !important;
+    color: #000 !important;
 }
 
-/* ==========================================================
-   MODE CLANDESTIN (FORCÉ)
-   ========================================================== */
-
-/* Changement de look des boîtes */
+/* Changement radical en mode clandestin */
 body.clandestine-mode .adresse-container,
 body.clandestine-mode .horaires-container {
     background-color: #050505 !important;
@@ -1392,16 +1389,15 @@ body.clandestine-mode .horaires-container {
     box-shadow: 0 0 20px var(--couleur-texte) !important;
 }
 
-/* Changement de l'adresse en message secret */
+/* Masquage et remplacement du texte de l'adresse */
 body.clandestine-mode .adresse-terminal {
-    font-size: 0 !important; /* On cache le texte normal */
+    font-size: 0 !important;
 }
 
 body.clandestine-mode .adresse-terminal::after {
     content: "⚠️ ZONE DE FRET - SECTEUR ALPHA-42 [ACCÈS RESTREINT] ⚠️" !important;
     font-size: 1.1rem !important;
-    color: #ff4444 !important; /* Rouge alerte */
+    color: #ff4444 !important;
     text-shadow: 0 0 10px #ff0000 !important;
     display: block !important;
-    letter-spacing: 1px !important;
 }
